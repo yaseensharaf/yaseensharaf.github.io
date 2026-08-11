@@ -4,313 +4,337 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yaseen Sharaf — Software Engineer</title>
+<meta name="description" content="Yaseen Sharaf — Computer Science graduate (First Class Honours, UWE Bristol). Full-stack and backend engineer based in Irving, TX.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B2540;
-    --bg-deep:#081C33;
-    --surface:#0F2E4C;
-    --surface-2:#123457;
-    --ink:#F2F6FA;
-    --ink-muted:#8FACC6;
-    --ink-dim:#5E7C99;
-    --line:#26507A;
-    --line-soft:#1B3F63;
-    --accent:#E8623D;
-    --accent-soft:#E8623D33;
-    --cyan:#7DD3FC;
-    --radius:2px;
-    --mono:'IBM Plex Mono', ui-monospace, monospace;
-    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --paper:#F5F7F9;
+    --card:#FFFFFF;
+    --ink:#0D1B2A;
+    --muted:#4A5A70;
+    --dim:#8492A6;
+    --line:#DCE2EA;
+    --line-strong:#C2CBD8;
+    --accent:#12554F;
+    --accent-tint:#12554F0F;
+    --serif:'Newsreader', Georgia, serif;
+    --sans:'Inter', system-ui, -apple-system, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
   body{
-    background:var(--bg);
+    background:var(--paper);
     color:var(--ink);
     font-family:var(--sans);
-    line-height:1.6;
-    background-image:
-      linear-gradient(var(--line-soft) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
-    background-size:48px 48px;
-    background-attachment:fixed;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
   }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+    *{animation:none !important; transition:none !important;}
   }
-
   a{color:inherit; text-decoration:none;}
-  ::selection{background:var(--accent); color:var(--bg-deep);}
-  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+  ::selection{background:var(--accent); color:#fff;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px;}
 
-  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 40px;}
+  @media (max-width:640px){ .wrap{padding:0 22px;} }
 
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    backdrop-filter:blur(10px);
-    background:rgba(8,28,51,0.82);
-    border-bottom:1px solid var(--line-soft);
+  /* ============ TOP BAR ============ */
+  .topbar{
+    position:sticky; top:0; z-index:60;
+    background:rgba(245,247,249,0.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
   }
-  .nav-inner{
-    max-width:1180px; margin:0 auto; padding:18px 32px;
-    display:flex; align-items:center; justify-content:space-between;
+  .topbar-inner{
+    max-width:1080px; margin:0 auto; padding:16px 40px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
   }
-  .logo{
-    font-family:var(--mono); font-weight:600; font-size:15px;
-    letter-spacing:0.06em;
-    border:1px solid var(--line); padding:6px 10px;
-    display:inline-flex; gap:2px;
+  .mark{
+    font-family:var(--serif); font-size:17px; font-weight:600; letter-spacing:0.02em;
   }
-  .logo span{color:var(--accent);}
-  nav.links{display:flex; gap:28px; font-family:var(--mono); font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;}
-  nav.links a{color:var(--ink-muted); transition:color 0.2s; position:relative; padding-bottom:2px;}
-  nav.links a:hover{color:var(--ink);}
-  nav.links a::after{
-    content:""; position:absolute; left:0; bottom:-3px; width:0; height:1px;
-    background:var(--accent); transition:width 0.25s ease;
+  .mark em{font-style:normal; color:var(--accent);}
+  .topnav{display:flex; gap:30px;}
+  .topnav a{
+    font-size:13.5px; font-weight:500; color:var(--muted);
+    transition:color .18s ease; position:relative; padding:2px 0;
   }
-  nav.links a:hover::after{width:100%;}
-  .nav-toggle{display:none;}
-  @media (max-width:760px){
-    nav.links{display:none;}
+  .topnav a:hover{color:var(--accent);}
+  .topnav a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-2px; height:1px;
+    background:var(--accent); transform:scaleX(0); transform-origin:left;
+    transition:transform .22s ease;
   }
+  .topnav a:hover::after{transform:scaleX(1);}
+  @media (max-width:820px){ .topnav{display:none;} .topbar-inner{padding:14px 22px; justify-content:center;} }
 
-  /* ---------- HERO ---------- */
-  .hero{
+  /* ============ LETTERHEAD HERO ============ */
+  .letterhead{padding:96px 0 76px; border-bottom:1px solid var(--line);}
+  .lh-meta{
+    display:flex; flex-wrap:wrap; gap:8px 26px;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--dim); margin-bottom:34px;
+  }
+  .lh-meta span{display:inline-flex; align-items:center; gap:8px;}
+  .lh-meta span::before{content:""; width:3px; height:3px; background:var(--accent); border-radius:50%;}
+  h1.lh-name{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(46px, 8.5vw, 92px);
+    line-height:1.0; letter-spacing:-0.025em;
+  }
+  .lh-rule{
+    height:1px; background:var(--line-strong); margin:30px 0 26px;
     position:relative;
-    padding:110px 0 90px;
-    border-bottom:1px solid var(--line-soft);
-    overflow:hidden;
   }
-  .hero .wrap{position:relative; z-index:2;}
-  .coord{
-    font-family:var(--mono); font-size:12px; color:var(--ink-dim);
-    letter-spacing:0.12em; text-transform:uppercase;
-    display:flex; align-items:center; gap:10px; margin-bottom:28px;
+  .lh-rule::before{
+    content:""; position:absolute; left:0; top:0; width:88px; height:3px;
+    background:var(--accent); transform:translateY(-1px);
   }
-  .coord .dot{width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft);}
-  .eyebrow{
-    font-family:var(--mono); color:var(--accent); font-size:13px;
-    letter-spacing:0.14em; text-transform:uppercase; margin-bottom:18px;
+  .lh-title{
+    font-family:var(--serif); font-size:clamp(20px, 3vw, 26px); font-weight:400;
+    color:var(--muted); font-style:italic; margin-bottom:22px;
   }
-  h1.name{
-    font-family:var(--sans); font-weight:700;
-    font-size:clamp(42px, 8vw, 88px);
-    line-height:0.98; letter-spacing:-0.02em;
-    max-width:900px;
-  }
-  .role-line{
-    margin-top:22px; display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center;
-    font-family:var(--mono); font-size:14px; color:var(--ink-muted);
-  }
-  .role-line .sep{color:var(--line);}
-  .hero-desc{
-    margin-top:28px; max-width:560px; font-size:17px; color:var(--ink-muted);
-  }
-  .hero-cta{margin-top:38px; display:flex; gap:16px; flex-wrap:wrap;}
+  .lh-blurb{max-width:60ch; font-size:17.5px; color:var(--muted);}
+  .lh-actions{margin-top:38px; display:flex; gap:12px; flex-wrap:wrap;}
   .btn{
-    font-family:var(--mono); font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
-    padding:14px 24px; border:1px solid var(--line); border-radius:var(--radius);
-    transition:all 0.2s ease; display:inline-flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:500; padding:13px 24px;
+    border:1px solid var(--line-strong); border-radius:4px;
+    transition:all .18s ease; display:inline-flex; align-items:center; gap:8px;
+    background:var(--card);
   }
-  .btn-primary{background:var(--accent); color:var(--bg-deep); border-color:var(--accent); font-weight:600;}
-  .btn-primary:hover{background:#f27a55; transform:translateY(-1px);}
-  .btn-ghost{color:var(--ink); }
-  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+  .btn:hover{border-color:var(--accent); color:var(--accent);}
+  .btn-solid{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .btn-solid:hover{background:#0E4640; color:#fff; border-color:#0E4640;}
 
-  /* schematic corner brackets */
-  .bracket{position:relative;}
-  .bracket::before, .bracket::after{
-    content:""; position:absolute; width:18px; height:18px;
-    border-color:var(--line); border-style:solid; opacity:0.7;
+  /* ============ SECTIONS ============ */
+  section{padding:84px 0; border-bottom:1px solid var(--line);}
+  .sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:44px;}
+  .sec-num{
+    font-family:var(--serif); font-size:15px; color:var(--accent);
+    font-weight:500; letter-spacing:0.1em;
   }
-  .bracket::before{top:-1px; left:-1px; border-width:1px 0 0 1px;}
-  .bracket::after{bottom:-1px; right:-1px; border-width:0 1px 1px 0;}
-
-  .stackline{
-    margin-top:64px; display:flex; flex-wrap:wrap; gap:10px;
+  .sec-title{
+    font-family:var(--serif); font-size:clamp(26px,4vw,34px);
+    font-weight:500; letter-spacing:-0.015em;
   }
-  .stack-chip{
-    font-family:var(--mono); font-size:12px; color:var(--ink-muted);
-    border:1px dashed var(--line); padding:6px 12px; border-radius:var(--radius);
+  .sec-line{flex:1; height:1px; background:var(--line); align-self:center;}
+
+  /* ============ ABOUT ============ */
+  .about{display:grid; grid-template-columns:1.45fr 1fr; gap:56px; align-items:start;}
+  .about p{font-size:17.5px; color:var(--muted); max-width:62ch;}
+  .about p + p{margin-top:18px;}
+  .about strong{color:var(--ink); font-weight:600;}
+  .datasheet{
+    background:var(--card); border:1px solid var(--line); border-radius:5px;
+    padding:8px 24px;
+  }
+  .ds-row{
+    display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+    padding:14px 0; border-bottom:1px solid var(--line);
+  }
+  .ds-row:last-child{border-bottom:none;}
+  .ds-k{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--dim); white-space:nowrap;
+  }
+  .ds-v{font-size:14px; font-weight:500; text-align:right;}
+  @media (max-width:860px){ .about{grid-template-columns:1fr; gap:36px;} }
+
+  /* ============ EXPERIENCE ============ */
+  .entry{
+    background:var(--card); border:1px solid var(--line); border-radius:5px;
+    padding:30px 32px; position:relative; overflow:hidden;
+  }
+  .entry + .entry{margin-top:16px;}
+  .entry::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:var(--accent);
+  }
+  .entry-head{
+    display:flex; flex-wrap:wrap; justify-content:space-between;
+    gap:6px 20px; margin-bottom:6px;
+  }
+  .entry-role{font-family:var(--serif); font-size:21px; font-weight:600; letter-spacing:-0.01em;}
+  .entry-date{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.06em;
+    color:var(--dim); white-space:nowrap; padding-top:8px;
+  }
+  .entry-org{font-size:14.5px; color:var(--accent); font-weight:500; margin-bottom:16px;}
+  .entry ul{list-style:none; max-width:70ch;}
+  .entry li{
+    position:relative; padding-left:20px; color:var(--muted);
+    font-size:15.5px; margin-bottom:7px;
+  }
+  .entry li::before{
+    content:""; position:absolute; left:2px; top:11px;
+    width:5px; height:1px; background:var(--line-strong);
+  }
+  .tags{margin-top:18px; display:flex; flex-wrap:wrap; gap:7px;}
+  .tag{
+    font-family:var(--mono); font-size:11px; color:var(--muted);
+    background:var(--accent-tint); border:1px solid var(--line);
+    padding:4px 9px; border-radius:3px;
   }
 
-  /* ---------- SECTION HEADERS ---------- */
-  .fig{
-    display:flex; align-items:baseline; gap:16px; margin-bottom:46px;
+  /* ============ PROJECTS ============ */
+  .projects{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:860px){ .projects{grid-template-columns:1fr;} }
+  .proj{
+    background:var(--card); border:1px solid var(--line); border-radius:5px;
+    padding:28px 30px; display:flex; flex-direction:column;
+    transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
   }
-  .fig-num{
-    font-family:var(--mono); font-size:13px; color:var(--accent); letter-spacing:0.1em;
-    border:1px solid var(--line); padding:4px 9px;
+  .proj:hover{
+    border-color:var(--line-strong);
+    box-shadow:0 6px 24px -12px rgba(13,27,42,0.18);
+    transform:translateY(-2px);
   }
-  .fig-title{font-family:var(--sans); font-weight:700; font-size:30px; letter-spacing:-0.01em;}
-  .fig-rule{flex:1; height:1px; background:var(--line-soft); align-self:center;}
-
-  section{padding:90px 0; border-bottom:1px solid var(--line-soft);}
-
-  /* ---------- ABOUT ---------- */
-  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:60px;}
-  .about-text{font-size:18px; color:var(--ink-muted); max-width:60ch;}
-  .about-text strong{color:var(--ink); font-weight:600;}
-  .facts{border:1px solid var(--line); padding:26px; border-radius:var(--radius); background:var(--surface);}
-  .fact-row{display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line-soft); font-family:var(--mono); font-size:13px;}
-  .fact-row:last-child{border-bottom:none;}
-  .fact-row .k{color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.08em;}
-  .fact-row .v{color:var(--ink); text-align:right;}
-  @media (max-width:840px){ .about-grid{grid-template-columns:1fr;} }
-
-  /* ---------- EXPERIENCE ---------- */
-  .timeline{position:relative; padding-left:32px; border-left:1px solid var(--line);}
-  .t-item{position:relative; padding-bottom:52px;}
-  .t-item:last-child{padding-bottom:0;}
-  .t-item::before{
-    content:""; position:absolute; left:-37px; top:4px; width:11px; height:11px;
-    background:var(--bg); border:2px solid var(--accent); border-radius:50%;
+  .proj-kicker{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:12px;
   }
-  .t-head{display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin-bottom:10px;}
-  .t-role{font-weight:700; font-size:19px;}
-  .t-org{color:var(--accent); font-family:var(--mono); font-size:13px; margin-top:4px;}
-  .t-date{font-family:var(--mono); font-size:12.5px; color:var(--ink-dim); letter-spacing:0.05em; white-space:nowrap;}
-  .t-desc{color:var(--ink-muted); max-width:65ch; margin-top:8px;}
-  .t-tags{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;}
-  .tag{font-family:var(--mono); font-size:11px; color:var(--cyan); border:1px solid var(--line); padding:4px 9px; border-radius:var(--radius);}
-
-  /* ---------- PROJECTS ---------- */
-  .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:22px;}
-  @media (max-width:840px){ .proj-grid{grid-template-columns:1fr;} }
-  .proj-card{
-    border:1px solid var(--line); background:var(--surface); border-radius:var(--radius);
-    padding:26px; position:relative; transition:transform 0.2s ease, border-color 0.2s ease;
+  .proj-name{
+    font-family:var(--serif); font-size:20px; font-weight:600;
+    letter-spacing:-0.01em; margin-bottom:10px; line-height:1.3;
   }
-  .proj-card:hover{transform:translateY(-3px); border-color:var(--cyan);}
-  .proj-id{font-family:var(--mono); font-size:11px; color:var(--ink-dim); letter-spacing:0.1em; margin-bottom:12px;}
-  .proj-title{font-weight:700; font-size:19px; margin-bottom:10px;}
-  .proj-desc{color:var(--ink-muted); font-size:14.5px; margin-bottom:16px;}
-  .proj-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;}
-  .proj-link{font-family:var(--mono); font-size:12px; color:var(--accent); display:inline-flex; align-items:center; gap:6px;}
-  .proj-link:hover{color:var(--cyan);}
-
-  /* ---------- SKILLS ---------- */
-  .skill-groups{display:grid; grid-template-columns:repeat(2,1fr); gap:36px 60px;}
-  @media (max-width:840px){ .skill-groups{grid-template-columns:1fr;} }
-  .skill-group-label{font-family:var(--mono); font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px;}
-  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
-  .chip{font-family:var(--mono); font-size:12.5px; color:var(--ink); border:1px solid var(--line); padding:7px 12px; border-radius:var(--radius); background:var(--surface);}
-
-  /* ---------- EDUCATION ---------- */
-  .edu-card{border:1px solid var(--line); background:var(--surface); padding:32px; border-radius:var(--radius); max-width:720px;}
-  .edu-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:6px;}
-  .edu-school{font-weight:700; font-size:20px;}
-  .edu-date{font-family:var(--mono); font-size:12.5px; color:var(--ink-dim);}
-  .edu-degree{color:var(--accent); font-family:var(--mono); font-size:13px; margin-bottom:16px;}
-  .edu-detail{color:var(--ink-muted); font-size:14.5px;}
-
-  /* ---------- CERTIFICATIONS ---------- */
-  .cert-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;}
-  @media (max-width:840px){ .cert-grid{grid-template-columns:1fr;} }
-  .cert-card{
-    border:1px dashed var(--line); border-radius:var(--radius);
-    padding:20px 22px; background:var(--surface);
+  .proj-desc{color:var(--muted); font-size:15px; margin-bottom:18px; flex:1;}
+  .proj-foot{
+    margin-top:auto; padding-top:16px; border-top:1px solid var(--line);
     display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
   }
-  .cert-name{font-weight:600; font-size:15px;}
-  .cert-org{font-family:var(--mono); font-size:12px; color:var(--ink-dim); white-space:nowrap;}
+  .proj-link{font-size:13.5px; font-weight:500; color:var(--accent);}
+  .proj-link:hover{text-decoration:underline; text-underline-offset:3px;}
 
-  /* ---------- CONTACT ---------- */
-  .contact{border-bottom:none;}
-  .contact-inner{
-    border:1px solid var(--line); background:var(--surface); border-radius:var(--radius);
-    padding:56px; text-align:center;
+  /* ============ SKILLS ============ */
+  .skills{display:grid; grid-template-columns:repeat(2,1fr); gap:32px 56px;}
+  @media (max-width:860px){ .skills{grid-template-columns:1fr;} }
+  .sk-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:14px;
+    padding-bottom:10px; border-bottom:1px solid var(--line);
   }
-  .contact-inner h2{font-size:clamp(28px,5vw,44px); font-weight:700; margin-bottom:16px;}
-  .contact-inner p{color:var(--ink-muted); max-width:50ch; margin:0 auto 32px;}
-  .contact-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
+  .sk-list{display:flex; flex-wrap:wrap; gap:7px;}
+  .sk{
+    font-size:13.5px; background:var(--card); border:1px solid var(--line);
+    padding:7px 13px; border-radius:4px; color:var(--muted); font-weight:500;
+  }
 
-  footer{padding:32px 0; text-align:center; font-family:var(--mono); font-size:12px; color:var(--ink-dim);}
+  /* ============ EDUCATION + CERTS ============ */
+  .two-col{display:grid; grid-template-columns:1.1fr 1fr; gap:44px; align-items:start;}
+  @media (max-width:860px){ .two-col{grid-template-columns:1fr; gap:36px;} }
+  .sub-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--dim); margin-bottom:16px;
+  }
+  .cert{
+    display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+    padding:14px 0; border-bottom:1px solid var(--line);
+  }
+  .cert:last-child{border-bottom:none;}
+  .cert-name{font-size:15px; font-weight:500;}
+  .cert-org{font-family:var(--mono); font-size:11px; color:var(--dim); white-space:nowrap; text-align:right;}
 
-  /* reveal on scroll */
-  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease;}
-  .reveal.in{opacity:1; transform:translateY(0);}
+  /* ============ CONTACT ============ */
+  .contact{border-bottom:none; padding-bottom:60px;}
+  .contact-card{
+    background:var(--card); border:1px solid var(--line); border-radius:6px;
+    padding:56px 48px; text-align:center;
+  }
+  .contact-card h2{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(28px,5vw,40px); letter-spacing:-0.02em; margin-bottom:14px;
+  }
+  .contact-card p{color:var(--muted); max-width:48ch; margin:0 auto 30px; font-size:16.5px;}
+  .contact-actions{display:flex; justify-content:center; gap:11px; flex-wrap:wrap;}
+  @media (max-width:640px){ .contact-card{padding:40px 24px;} }
+
+  footer{
+    padding:26px 0 40px; text-align:center;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em;
+    color:var(--dim);
+  }
+
+  /* ============ REVEAL ============ */
+  .rv{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;}
+  .rv.on{opacity:1; transform:none;}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-inner">
-    <div class="logo">Y<span>.</span>S<span>.</span></div>
-    <nav class="links">
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="mark">Yaseen Sharaf<em>.</em></a>
+    <nav class="topnav">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
+      <a href="#work">Work</a>
       <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#certifications">Certifications</a>
+      <a href="#background">Background</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
+<div class="letterhead" id="top">
   <div class="wrap">
-    <div class="coord"><span class="dot"></span> IRVING, TX · US WORK AUTHORIZED · NO SPONSORSHIP REQUIRED</div>
-    <div class="eyebrow">// Software Engineer</div>
-    <h1 class="name">Yaseen<br>Sharaf</h1>
-    <div class="role-line">
-      <span>Full-Stack &amp; Backend Development</span>
-      <span class="sep">/</span>
-      <span>Applied ML</span>
-      <span class="sep">/</span>
-      <span>Cloud &amp; Systems</span>
+    <div class="lh-meta">
+      <span>Irving, Texas</span>
+      <span>US Work Authorized</span>
+      <span>Open to Opportunities</span>
     </div>
-    <p class="hero-desc">
-      Computer Science graduate (First Class Honours, UWE Bristol) building backend
-      systems, APIs, and ML-driven applications — from payment platforms to
-      real-time forecasting tools.
+    <h1 class="lh-name">Yaseen Sharaf</h1>
+    <div class="lh-rule"></div>
+    <p class="lh-title">Software Engineer — Backend, Full-Stack &amp; Applied Machine Learning</p>
+    <p class="lh-blurb">
+      Computer Science graduate with First Class Honours from the University of the West
+      of England, Bristol. I build production-minded backend services, database-driven
+      web applications, and machine learning systems — with hands-on experience in a
+      live e-payment environment.
     </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View Projects →</a>
-      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-    </div>
-    <div class="stackline">
-      <span class="stack-chip">Python</span>
-      <span class="stack-chip">C#</span>
-      <span class="stack-chip">JavaScript</span>
-      <span class="stack-chip">ASP.NET Core</span>
-      <span class="stack-chip">Docker</span>
-      <span class="stack-chip">Kubernetes</span>
-      <span class="stack-chip">AWS</span>
-      <span class="stack-chip">GCP</span>
+    <div class="lh-actions">
+      <a href="#work" class="btn btn-solid">View Selected Work</a>
+      <a href="#contact" class="btn">Get in Touch</a>
     </div>
   </div>
-</section>
+</div>
 
 <section id="about">
   <div class="wrap">
-    <div class="fig reveal"><span class="fig-num">FIG.01</span><span class="fig-title">About</span><span class="fig-rule"></span></div>
-    <div class="about-grid">
-      <p class="about-text reveal">
-        I'm a Computer Science graduate with a <strong>First Class Honours</strong> degree
-        from the University of the West of England, Bristol. I work across the full
-        stack — Python and Django on the backend, Kotlin for Android, ASP.NET Core for
-        enterprise systems — and I like pairing that with applied machine learning,
-        from ARIMA/LSTM forecasting to logistic regression on clinical data. I gained
-        production experience on a live e-payment platform during an internship in
-        Amman, and I build side projects in Agile, test-driven style to keep sharpening
-        both halves of the stack. I'm based in Irving, TX and authorized to work in the
-        U.S. without sponsorship.
-      </p>
-      <div class="facts reveal">
-        <div class="fact-row"><span class="k">Location</span><span class="v">Irving, TX</span></div>
-        <div class="fact-row"><span class="k">Focus</span><span class="v">Backend / Full-Stack</span></div>
-        <div class="fact-row"><span class="k">Degree</span><span class="v">BSc CS, First Class</span></div>
-        <div class="fact-row"><span class="k">School</span><span class="v">UWE Bristol</span></div>
-        <div class="fact-row"><span class="k">Status</span><span class="v">Open to opportunities</span></div>
-        <div class="fact-row"><span class="k">GitHub</span><span class="v">yaseensharaf</span></div>
+    <div class="sec-head rv"><span class="sec-num">I</span><h2 class="sec-title">Profile</h2><span class="sec-line"></span></div>
+    <div class="about">
+      <div class="rv">
+        <p>
+          I work across the full stack, with the strongest pull toward the backend —
+          designing REST APIs, modelling data, and getting systems into a state where
+          they can be deployed, tested, and maintained by a team rather than just run
+          on my laptop.
+        </p>
+        <p>
+          My internship at <strong>SEDRAPAY</strong> in Amman put me inside a production
+          e-payment platform, where correctness and security aren't optional. Alongside
+          that, I build applied machine learning projects — hybrid ARIMA and LSTM
+          forecasting, logistic regression on clinical data — because I find the gap
+          between a model that works in a notebook and one that works in an application
+          genuinely interesting.
+        </p>
+        <p>
+          I work in Agile teams, write tests, and use CI/CD as a default rather than an
+          afterthought. Currently based in Irving, Texas and authorized to work in the
+          U.S. without sponsorship.
+        </p>
+      </div>
+      <div class="datasheet rv">
+        <div class="ds-row"><span class="ds-k">Location</span><span class="ds-v">Irving, TX</span></div>
+        <div class="ds-row"><span class="ds-k">Focus</span><span class="ds-v">Software Engineering &amp; AI/ML</span></div>
+        <div class="ds-row"><span class="ds-k">Degree</span><span class="ds-v">BSc (Hons), First Class</span></div>
+        <div class="ds-row"><span class="ds-k">Institution</span><span class="ds-v">UWE Bristol</span></div>
+        <div class="ds-row"><span class="ds-k">Core Stack</span><span class="ds-v">Python · C# · SQL</span></div>
+        <div class="ds-row"><span class="ds-k">Work Status</span><span class="ds-v">No sponsorship required</span></div>
       </div>
     </div>
   </div>
@@ -318,124 +342,99 @@
 
 <section id="experience">
   <div class="wrap">
-    <div class="fig reveal"><span class="fig-num">FIG.02</span><span class="fig-title">Experience</span><span class="fig-rule"></span></div>
-    <div class="timeline">
-      <div class="t-item reveal">
-        <div class="t-head">
-          <div>
-            <div class="t-role">.NET Developer Intern</div>
-            <div class="t-org">SEDRAPAY — e-Payment Solutions, Amman, Jordan</div>
-          </div>
-          <div class="t-date">JUL — SEP 2024</div>
-        </div>
-        <p class="t-desc">
-          Worked with ASP.NET Core applications in a production e-payment environment.
-          Assisted with testing, debugging, and maintaining backend code, and supported
-          SQL query review and database optimization under senior developer supervision.
-          Gained hands-on exposure to system architecture, APIs, and security practices.
-        </p>
-        <div class="t-tags">
-          <span class="tag">ASP.NET Core</span>
-          <span class="tag">SQL</span>
-          <span class="tag">C#</span>
-          <span class="tag">Payments</span>
-        </div>
+    <div class="sec-head rv"><span class="sec-num">II</span><h2 class="sec-title">Experience</h2><span class="sec-line"></span></div>
+    <div class="entry rv">
+      <div class="entry-head">
+        <h3 class="entry-role">.NET Developer Intern</h3>
+        <span class="entry-date">JUL 2024 — SEP 2024</span>
       </div>
-      <div class="t-item reveal">
-        <div class="t-head">
-          <div>
-            <div class="t-role">BSc Computer Science</div>
-            <div class="t-org">University of the West of England (UWE), Bristol, UK</div>
-          </div>
-          <div class="t-date">SEP 2022 — JUL 2025</div>
-        </div>
-        <p class="t-desc">
-          Graduated with First Class Honours. Coursework and independent projects spanning
-          full-stack web development, applied machine learning, and systems programming.
-        </p>
-        <div class="t-tags">
-          <span class="tag">First Class Honours</span>
-          <span class="tag">Software Engineering</span>
-        </div>
+      <div class="entry-org">SEDRAPAY for e-Payment Solutions · Amman, Jordan</div>
+      <ul>
+        <li>Worked with ASP.NET Core applications in a production e-payment environment.</li>
+        <li>Assisted with testing, debugging, and maintaining backend code to improve reliability.</li>
+        <li>Reviewed SQL queries and supported database optimization under senior developer supervision.</li>
+        <li>Gained practical exposure to system architecture, business logic, APIs, and security practices.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">ASP.NET Core</span><span class="tag">C#</span><span class="tag">SQL</span>
+        <span class="tag">REST APIs</span><span class="tag">Payments</span>
       </div>
     </div>
   </div>
 </section>
 
-<section id="projects">
+<section id="work">
   <div class="wrap">
-    <div class="fig reveal"><span class="fig-num">FIG.03</span><span class="fig-title">Projects</span><span class="fig-rule"></span></div>
-    <div class="proj-grid">
+    <div class="sec-head rv"><span class="sec-num">III</span><h2 class="sec-title">Selected Work</h2><span class="sec-line"></span></div>
+    <div class="projects">
 
-      <div class="proj-card reveal">
-        <div class="proj-id">01 / FORECASTING</div>
-        <div class="proj-title">Intelligent Retail Demand Forecasting System</div>
-        <p class="proj-desc">Hybrid ARIMA + LSTM forecasting model that improved prediction accuracy by
-          18%. Includes a Flask dashboard for sales trends, top products, and inventory
-          planning, deployed via Docker with GitHub Actions CI/CD.</p>
-        <div class="proj-tags">
-          <span class="tag">ARIMA</span><span class="tag">LSTM</span><span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
+      <article class="proj rv">
+        <div class="proj-kicker">Machine Learning · Forecasting</div>
+        <h3 class="proj-name">Intelligent Retail Demand Forecasting System</h3>
+        <p class="proj-desc">
+          A hybrid ARIMA and LSTM forecasting model that improved prediction accuracy by
+          18 percent, paired with a Flask dashboard surfacing sales trends, top products,
+          and inventory planning. Deployed with Docker and automated through GitHub Actions.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">LSTM</span>
+          <span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
         </div>
-        <a class="proj-link" href="https://github.com/yaseensharaf/Intelligent-Retail-Demand-Forecasting-System" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
+        <div class="proj-foot">
+          <a class="proj-link" href="https://github.com/yaseensharaf/Intelligent-Retail-Demand-Forecasting-System" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
 
-      <div class="proj-card reveal">
-        <div class="proj-id">02 / MOBILE</div>
-        <div class="proj-title">Daily Groceries — Android Shopping App</div>
-        <p class="proj-desc">Native Android grocery shopping app built with Kotlin and Firebase.
-          User authentication, real-time cart sync, order management, and purchase history,
-          built on an MVVM architecture with ViewModel, LiveData, and RecyclerView.</p>
-        <div class="proj-tags">
-          <span class="tag">Kotlin</span><span class="tag">Firebase</span><span class="tag">MVVM</span><span class="tag">Android</span>
+      <article class="proj rv">
+        <div class="proj-kicker">Full-Stack · Platform</div>
+        <h3 class="proj-name">Uni Hub — Campus Community Platform</h3>
+        <p class="proj-desc">
+          A full-stack Django platform for student networking, communities, and events.
+          Built on a Dockerized architecture with a PostgreSQL backend and CI/CD
+          integration, with REST endpoints validated end-to-end in Postman.
+        </p>
+        <div class="tags">
+          <span class="tag">Django</span><span class="tag">PostgreSQL</span>
+          <span class="tag">Docker</span><span class="tag">REST API</span><span class="tag">Postman</span>
         </div>
-        <a class="proj-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
+        <div class="proj-foot">
+          <a class="proj-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
 
-      <div class="proj-card reveal">
-        <div class="proj-id">03 / FULL-STACK</div>
-        <div class="proj-title">Uni Hub — Campus Community Platform</div>
-        <p class="proj-desc">Full-stack Django platform for student networking, communities, and
-          events. Dockerized architecture with a PostgreSQL backend and CI/CD integration;
-          REST APIs validated end-to-end with Postman.</p>
-        <div class="proj-tags">
-          <span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">REST API</span>
+      <article class="proj rv">
+        <div class="proj-kicker">Mobile · Android</div>
+        <h3 class="proj-name">Daily Groceries — Android Shopping App</h3>
+        <p class="proj-desc">
+          A native Android grocery application built with Kotlin and Firebase, featuring
+          user authentication, real-time cart synchronisation, order management, and
+          purchase history — structured on MVVM with ViewModel, LiveData, and RecyclerView.
+        </p>
+        <div class="tags">
+          <span class="tag">Kotlin</span><span class="tag">Firebase</span>
+          <span class="tag">MVVM</span><span class="tag">Android</span>
         </div>
-        <a class="proj-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
+        <div class="proj-foot">
+          <a class="proj-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
 
-      <div class="proj-card reveal">
-        <div class="proj-id">04 / HEALTHCARE ML</div>
-        <div class="proj-title">AI-Powered Nutritional Care Dashboard</div>
-        <p class="proj-desc">Patient prioritization dashboard built on a logistic regression
-          model trained on clinical datasets, with an interactive dark-mode UI designed
-          for usability and accessibility.</p>
-        <div class="proj-tags">
-          <span class="tag">Logistic Regression</span><span class="tag">Dashboard</span><span class="tag">Healthcare</span>
+      <article class="proj rv">
+        <div class="proj-kicker">Machine Learning · Healthcare</div>
+        <h3 class="proj-name">AI-Powered Nutritional Care Dashboard</h3>
+        <p class="proj-desc">
+          A patient prioritisation dashboard driven by a logistic regression model trained
+          on clinical datasets, with an interactive interface and dark mode designed to
+          improve usability and accessibility for clinical staff.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span>
+          <span class="tag">Data Visualisation</span><span class="tag">Healthcare</span>
         </div>
-        <a class="proj-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
-
-      <div class="proj-card reveal">
-        <div class="proj-id">05 / ML SYSTEMS</div>
-        <div class="proj-title">Real-Time Labor Demand Predictor</div>
-        <p class="proj-desc">Full-stack ML application forecasting labor demand using a Random
-          Forest Regression model, served through a FastAPI backend with a React frontend.</p>
-        <div class="proj-tags">
-          <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Scikit-Learn</span>
+        <div class="proj-foot">
+          <a class="proj-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View repository →</a>
         </div>
-        <a class="proj-link" href="https://github.com/yaseensharaf/real-time-labor-demand-predictor" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
-
-      <div class="proj-card reveal">
-        <div class="proj-id">06 / MORE</div>
-        <div class="proj-title">22 Repositories on GitHub</div>
-        <p class="proj-desc">More projects spanning full-stack apps, machine learning
-          experiments, and systems tools live on my GitHub profile.</p>
-        <div class="proj-tags">
-          <span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">Next.js</span>
-        </div>
-        <a class="proj-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View full profile →</a>
-      </div>
+      </article>
 
     </div>
   </div>
@@ -443,82 +442,80 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="fig reveal"><span class="fig-num">FIG.04</span><span class="fig-title">Skills</span><span class="fig-rule"></span></div>
-    <div class="skill-groups">
-      <div class="reveal">
-        <div class="skill-group-label">Languages</div>
-        <div class="chip-row">
-          <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">C#</span>
-          <span class="chip">C++</span><span class="chip">Java</span><span class="chip">SQL</span>
-          <span class="chip">Kotlin</span><span class="chip">Julia</span><span class="chip">Swift</span>
-          <span class="chip">HTML5 / CSS3</span>
+    <div class="sec-head rv"><span class="sec-num">IV</span><h2 class="sec-title">Technical Skills</h2><span class="sec-line"></span></div>
+    <div class="skills">
+      <div class="rv">
+        <div class="sk-label">Languages</div>
+        <div class="sk-list">
+          <span class="sk">Python</span><span class="sk">C#</span><span class="sk">JavaScript</span>
+          <span class="sk">SQL</span><span class="sk">Kotlin</span><span class="sk">Bash</span>
+          <span class="sk">HTML</span><span class="sk">CSS</span><span class="sk">Node.js</span>
         </div>
       </div>
-      <div class="reveal">
-        <div class="skill-group-label">Frameworks</div>
-        <div class="chip-row">
-          <span class="chip">ASP.NET Core</span><span class="chip">Django</span><span class="chip">Flask</span>
-          <span class="chip">FastAPI</span><span class="chip">Node.js</span><span class="chip">React</span>
-          <span class="chip">Next.js</span><span class="chip">Vue.js</span><span class="chip">Astro</span>
-          <span class="chip">GraphQL</span>
+      <div class="rv">
+        <div class="sk-label">Frameworks</div>
+        <div class="sk-list">
+          <span class="sk">Django</span><span class="sk">Flask</span><span class="sk">ASP.NET Core</span>
         </div>
       </div>
-      <div class="reveal">
-        <div class="skill-group-label">Infra &amp; Cloud</div>
-        <div class="chip-row">
-          <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">AWS</span>
-          <span class="chip">GCP</span><span class="chip">Git</span><span class="chip">GitHub Actions</span>
-          <span class="chip">Linux</span><span class="chip">PostgreSQL</span>
+      <div class="rv">
+        <div class="sk-label">Machine Learning &amp; Data</div>
+        <div class="sk-list">
+          <span class="sk">TensorFlow</span><span class="sk">Keras</span><span class="sk">Scikit-learn</span>
+          <span class="sk">Pandas</span><span class="sk">NumPy</span><span class="sk">Matplotlib</span>
         </div>
       </div>
-      <div class="reveal">
-        <div class="skill-group-label">ML / Data</div>
-        <div class="chip-row">
-          <span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">Scikit-Learn</span>
-          <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Plotly</span>
+      <div class="rv">
+        <div class="sk-label">Tools, Cloud &amp; Practice</div>
+        <div class="sk-list">
+          <span class="sk">Git</span><span class="sk">GitHub Actions</span><span class="sk">Docker</span>
+          <span class="sk">Kubernetes</span><span class="sk">Postman</span><span class="sk">AWS</span>
+          <span class="sk">GCP</span><span class="sk">PostgreSQL</span><span class="sk">Firebase</span>
+          <span class="sk">Linux</span><span class="sk">Agile / Scrum</span><span class="sk">TDD</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="education">
+<section id="background">
   <div class="wrap">
-    <div class="fig reveal"><span class="fig-num">FIG.05</span><span class="fig-title">Education</span><span class="fig-rule"></span></div>
-    <div class="edu-card reveal">
-      <div class="edu-top">
-        <div class="edu-school">University of the West of England, Bristol</div>
-        <div class="edu-date">SEP 2022 — JUL 2025</div>
+    <div class="sec-head rv"><span class="sec-num">V</span><h2 class="sec-title">Background</h2><span class="sec-line"></span></div>
+    <div class="two-col">
+      <div class="rv">
+        <div class="sub-label">Education</div>
+        <div class="entry">
+          <div class="entry-head">
+            <h3 class="entry-role">BSc (Hons) Computer Science</h3>
+            <span class="entry-date">SEP 2022 — JUL 2025</span>
+          </div>
+          <div class="entry-org">University of the West of England, Bristol, UK</div>
+          <ul>
+            <li>Graduated with First Class Honours.</li>
+            <li>Coursework across software engineering, databases, distributed systems, and applied machine learning.</li>
+          </ul>
+        </div>
       </div>
-      <div class="edu-degree">BSc (Hons) Computer Science — First Class Honours</div>
-      <p class="edu-detail">
-        Graduated with First Class Honours. Coursework spanning software engineering,
-        databases, and applied machine learning, complemented by a professional
-        internship in payment systems development.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="certifications">
-  <div class="wrap">
-    <div class="fig reveal"><span class="fig-num">FIG.06</span><span class="fig-title">Certifications</span><span class="fig-rule"></span></div>
-    <div class="cert-grid">
-      <div class="cert-card reveal">
-        <div class="cert-name">Ethical Hacker</div>
-        <div class="cert-org">Cisco Networking Academy · 2025</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-name">Introduction to Cybersecurity</div>
-        <div class="cert-org">Cisco Networking Academy · 2025</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-name">NLP with Classification and Vector Spaces</div>
-        <div class="cert-org">DeepLearning.AI · 2025</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-name">CCNA</div>
-        <div class="cert-org">Cisco · Currently Enrolled</div>
+      <div class="rv">
+        <div class="sub-label">Certifications</div>
+        <div class="datasheet">
+          <div class="cert">
+            <span class="cert-name">Ethical Hacker</span>
+            <span class="cert-org">Cisco · 2025</span>
+          </div>
+          <div class="cert">
+            <span class="cert-name">Introduction to Cybersecurity</span>
+            <span class="cert-org">Cisco · 2025</span>
+          </div>
+          <div class="cert">
+            <span class="cert-name">NLP with Classification &amp; Vector Spaces</span>
+            <span class="cert-org">DeepLearning.AI · 2025</span>
+          </div>
+          <div class="cert">
+            <span class="cert-name">CCNA</span>
+            <span class="cert-org">Cisco · In progress</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -526,30 +523,31 @@
 
 <section id="contact" class="contact">
   <div class="wrap">
-    <div class="contact-inner reveal">
-      <h2>Let's build something.</h2>
-      <p>I'm open to backend, full-stack, and ML engineering roles. Feel free to reach out —
-        I'm based in Irving, TX and authorized to work in the U.S. without sponsorship.</p>
-      <div class="contact-links">
-        <a class="btn btn-primary" href="mailto:yaseensharaf666@gmail.com">Email Me</a>
-        <a class="btn btn-ghost" href="tel:+12165326090">+1 (216) 532-6090</a>
-        <a class="btn btn-ghost" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/yaseensharaf04/" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="contact-card rv">
+      <h2>Let's talk.</h2>
+      <p>
+        I'm open to backend, full-stack, and machine learning engineering roles.
+        Based in Irving, Texas and authorized to work in the U.S. without sponsorship.
+      </p>
+      <div class="contact-actions">
+        <a class="btn btn-solid" href="mailto:yaseensharaf666@gmail.com">yaseensharaf666@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/yaseensharaf04/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="tel:+12165326090">+1 (216) 532-6090</a>
       </div>
     </div>
   </div>
 </section>
 
-<footer>© 2026 Yaseen Sharaf — Built with intent, one section at a time.</footer>
+<footer>© 2026 Yaseen Sharaf</footer>
 
 <script>
-  const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
 </script>
 
 </body>
