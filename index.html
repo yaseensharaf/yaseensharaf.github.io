@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yaseen Sharaf — Software Engineer</title>
-<meta name="description" content="Yaseen Sharaf — Software engineer building backend systems, full-stack applications, and machine learning that ships. First Class Honours, UWE Bristol. Irving, TX.">
+<meta name="description" content="Yaseen Sharaf — software engineer working across backend systems, Go and Django services, and applied machine learning. First Class Honours, UWE Bristol. Based in Irving, TX.">
+<meta name="theme-color" content="#0A2B36">
+<link rel="canonical" href="https://yaseensharaf.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yaseensharaf.github.io/">
+<meta property="og:title" content="Yaseen Sharaf — Software Engineer">
+<meta property="og:description" content="Backend, full-stack and applied machine learning. First Class Honours, UWE Bristol. Based in Irving, TX.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%230A2B36'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23E0B45F' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -74,7 +83,21 @@
   .nav.stuck .navlinks a{color:var(--ink-muted);}
   .navlinks a:hover{color:var(--brass-light);}
   .nav.stuck .navlinks a:hover{color:var(--brass);}
-  @media (max-width:900px){ .navlinks{display:none;} .nav-inner{padding:18px 22px;} }
+  .menu-btn{
+    display:none; background:none; border:1px solid var(--line-dark); border-radius:2px;
+    color:var(--onpetrol); font:500 13px var(--sans); padding:8px 14px; cursor:pointer;
+  }
+  .nav.stuck .menu-btn, .nav.open .menu-btn{color:var(--ink); border-color:var(--line);}
+  @media (max-width:900px){
+    .nav-inner{padding:18px 22px; flex-wrap:wrap;}
+    .menu-btn{display:inline-block;}
+    .navlinks{display:none; width:100%; flex-direction:column; gap:0; padding:8px 0 4px;}
+    .nav.open{background:var(--bone); border-bottom-color:var(--line);}
+    .nav.open .mark{color:var(--ink);}
+    .nav.open .mark i{color:var(--brass);}
+    .nav.open .navlinks{display:flex;}
+    .nav.open .navlinks a{color:var(--ink-muted); padding:12px 0; border-top:1px solid var(--line); font-size:15px;}
+  }
 
   /* ================= HERO ================= */
   .hero{
@@ -147,7 +170,9 @@
   .swatch.f{background:var(--brass-light); height:0; border-top:2px dashed var(--brass-light);}
 
   .draw{stroke-dasharray:1; stroke-dashoffset:1; animation:draw 2.1s cubic-bezier(.4,0,.2,1) .35s forwards;}
-  .draw.f{animation-delay:2.2s; animation-duration:1.3s;}
+  .reveal-rect{transform-box:fill-box; transform-origin:left center; transform:scaleX(0);
+    animation:reveal 1.3s cubic-bezier(.4,0,.2,1) 2.2s forwards;}
+  @keyframes reveal{to{transform:scaleX(1);}}
   @keyframes draw{to{stroke-dashoffset:0;}}
   .fade-band{opacity:0; animation:fadeIn .9s ease 3.2s forwards;}
   .fade-dot{opacity:0; animation:fadeIn .6s ease 2.2s forwards;}
@@ -205,6 +230,12 @@
   }
   .exp-role{font-family:var(--display); font-size:28px; letter-spacing:-0.01em; line-height:1.2;}
   .exp-org{font-size:14.5px; color:var(--brass); font-weight:500; margin:6px 0 18px;}
+  .exp-now{
+    display:inline-block; margin-top:10px; font-family:var(--mono); font-size:10.5px;
+    color:var(--petrol); background:#F1E3C6; border:1px solid #E3CB98;
+    padding:3px 8px; border-radius:2px;
+  }
+  .exp:last-child{border-bottom:1px solid var(--line);}
   .exp ul{list-style:none; max-width:66ch;}
   .exp li{position:relative; padding-left:22px; color:var(--ink-muted); margin-bottom:8px;}
   .exp li::before{
@@ -259,7 +290,7 @@
   .card-t{font-family:var(--display); font-size:24px; line-height:1.22; letter-spacing:-0.01em; margin-bottom:12px;}
   .card-d{color:var(--ink-muted); font-size:15px; flex:1;}
   .card-link{
-    margin-top:22px; padding-top:18px; border-top:1px solid var(--line);
+    display:inline-block; margin-top:22px; padding-top:18px; border-top:1px solid var(--line);
     font-size:13.5px; font-weight:500; color:var(--brass);
   }
   .card-link:hover{text-decoration:underline; text-underline-offset:4px;}
@@ -327,13 +358,14 @@
   }
 
   /* ================= MOTION ================= */
-  .rv{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
-  .rv.on{opacity:1; transform:none;}
+  .js .rv{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .js .rv.on{opacity:1; transform:none;}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation:none !important; transition:none !important;}
-    .rv{opacity:1; transform:none;}
+    .js .rv{opacity:1; transform:none;}
     .draw{stroke-dashoffset:0;}
+    .reveal-rect{transform:none !important;}
     .fade-band,.fade-dot{opacity:1;}
   }
 </style>
@@ -343,7 +375,8 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#top" class="mark">Yaseen Sharaf<i>.</i></a>
-    <div class="navlinks">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">Menu</button>
+    <div class="navlinks" id="navlinks">
       <a href="#profile">Profile</a>
       <a href="#experience">Experience</a>
       <a href="#work">Work</a>
@@ -365,8 +398,8 @@
         <p class="hero-blurb">
           I build the layer most people never see — APIs, data models, forecasting
           pipelines, and the deployment plumbing that keeps them running. First Class
-          Honours in Computer Science, with production experience inside a live
-          e-payment platform.
+          Honours in Computer Science, currently a software engineering intern on a
+          production compliance platform, with earlier work inside a live e-payment system.
         </p>
         <div class="hero-cta">
           <a href="#work" class="btn btn-brass">Selected Work</a>
@@ -407,10 +440,13 @@
                 fill="none" stroke="#93AEB4" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round"/>
 
-          <!-- forecast -->
-          <path class="draw f" pathLength="1"
+          <!-- forecast (clip-revealed so the dash pattern is kept) -->
+          <defs>
+            <clipPath id="fcClip"><rect class="reveal-rect" x="358" y="0" width="204" height="300"/></clipPath>
+          </defs>
+          <path clip-path="url(#fcClip)"
                 d="M360,168 L400,157 L440,145 L480,151 L520,129 L560,119"
-                fill="none" stroke="#E0B45F" stroke-width="2.5" stroke-dasharray="1"
+                fill="none" stroke="#E0B45F" stroke-width="2.5" stroke-dasharray="7 6"
                 stroke-linecap="round" stroke-linejoin="round"/>
 
           <!-- split dot -->
@@ -446,12 +482,14 @@
           actually run.
         </p>
         <p>
-          At <strong>SEDRAPAY</strong> in Amman I worked inside a production e-payment
-          platform, where reliability and security are the requirements rather than the
-          stretch goals. Outside of that, I build applied machine learning systems —
-          hybrid time-series forecasting, clinical risk prioritisation — because the
-          distance between a working notebook and a working product is where most of the
-          real engineering lives.
+          I'm currently at <strong>Silver Wolf</strong>, building data models and workflows
+          for a production multilingual GRC platform in Django. Before that I worked inside
+          <strong>SEDRAPAY</strong>'s e-payment platform, where reliability and security are
+          the requirements rather than the stretch goals, and completed two remote machine
+          learning internships. On my own time I build things like a server-authoritative
+          multiplayer game server in Go and a hybrid ARIMA–LSTM forecasting pipeline —
+          because the distance between a working notebook and a working product is where
+          most of the real engineering lives.
         </p>
       </div>
       <div class="sheet rv">
@@ -459,8 +497,8 @@
         <div class="sheet-row"><span class="sheet-k">Discipline</span><span class="sheet-v">Backend &amp; Full-Stack</span></div>
         <div class="sheet-row"><span class="sheet-k">Degree</span><span class="sheet-v">BSc (Hons), First Class</span></div>
         <div class="sheet-row"><span class="sheet-k">University</span><span class="sheet-v">UWE Bristol</span></div>
-        <div class="sheet-row"><span class="sheet-k">Primary stack</span><span class="sheet-v">Python · C# · SQL</span></div>
-        <div class="sheet-row"><span class="sheet-k">Practice</span><span class="sheet-v">Agile · TDD · CI/CD</span></div>
+        <div class="sheet-row"><span class="sheet-k">Primary stack</span><span class="sheet-v">Python · Go · C# · SQL</span></div>
+        <div class="sheet-row"><span class="sheet-k">Practice</span><span class="sheet-v">Agile · Scrum · CI/CD</span></div>
         <div class="sheet-row"><span class="sheet-k">Work status</span><span class="sheet-v">No sponsorship required</span></div>
       </div>
     </div>
@@ -472,19 +510,67 @@
   <div class="wrap">
     <div class="sec-head rv"><span class="sec-n">02</span><h2 class="sec-t">Experience</h2><span class="sec-rule"></span></div>
     <div class="exp rv">
+      <div class="exp-when">AUG 2026 — PRESENT<br><span class="exp-now">Current</span></div>
+      <div>
+        <h3 class="exp-role">Software Engineering Intern</h3>
+        <div class="exp-org">Silver Wolf · Amman, Jordan (Hybrid)</div>
+        <ul>
+          <li>Designed and implemented data models, views, templates, and database-backed workflows for a production multilingual GRC platform using Django.</li>
+          <li>Debugged and refined risk assessment, reporting, dashboard, and internationalisation features to improve system stability and user experience.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Django</span><span class="tag">Python</span><span class="tag">SQL</span>
+          <span class="tag">i18n</span><span class="tag">GRC</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div class="exp-when">NOV 2025 — JAN 2026</div>
+      <div>
+        <h3 class="exp-role">Data Science &amp; Analytics Intern</h3>
+        <div class="exp-org">Developers Hub · Egypt (Remote)</div>
+        <ul>
+          <li>Built Logistic Regression, Random Forest, Decision Tree, and Linear Regression models, reaching 91.25% accuracy on credit risk prediction and 86.55% on customer churn prediction.</li>
+          <li>Handled preprocessing, feature encoding, scaling, visualisation, and model evaluation with Pandas, NumPy, Scikit-learn, Matplotlib, and Seaborn.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+          <span class="tag">Seaborn</span><span class="tag">Classification</span>
+        </div>
+        <a class="card-link" href="https://github.com/yaseensharaf/Developers_Hub_Data_Science_Internship" target="_blank" rel="noopener">View internship work →</a>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div class="exp-when">SEP — NOV 2025</div>
+      <div>
+        <h3 class="exp-role">Machine Learning Intern</h3>
+        <div class="exp-org">Elevvo · Egypt (Remote)</div>
+        <ul>
+          <li>Built and tuned Scikit-learn and XGBoost models, achieving ≈0.96 F1 on forest-cover classification and 0.98 R² on sales forecasting.</li>
+          <li>Carried out preprocessing, EDA, feature engineering, hyperparameter tuning, evaluation, and visualisation across regression, classification, clustering, and forecasting tasks.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">XGBoost</span><span class="tag">Scikit-learn</span><span class="tag">Feature engineering</span>
+          <span class="tag">Forecasting</span><span class="tag">Clustering</span>
+        </div>
+        <a class="card-link" href="https://github.com/yaseensharaf/Elevvo-Machine-Learning-Internship" target="_blank" rel="noopener">View internship work →</a>
+      </div>
+    </div>
+
+    <div class="exp rv">
       <div class="exp-when">JUL — SEP 2024</div>
       <div>
-        <h3 class="exp-role">.NET Developer Intern</h3>
+        <h3 class="exp-role">Software Engineering Intern</h3>
         <div class="exp-org">SEDRAPAY for e-Payment Solutions · Amman, Jordan</div>
         <ul>
-          <li>Worked with ASP.NET Core applications in a production e-payment environment.</li>
-          <li>Assisted with testing, debugging, and maintaining backend code to improve reliability.</li>
-          <li>Reviewed SQL queries and supported database optimisation under senior developer supervision.</li>
-          <li>Gained practical exposure to system architecture, business logic, APIs, and security practices.</li>
+          <li>Tested, debugged, and maintained backend functionality in ASP.NET Core applications within a production e-payment environment.</li>
+          <li>Worked with SQL, REST APIs, application business logic, database operations, and secure software development practices.</li>
         </ul>
         <div class="tags">
           <span class="tag">ASP.NET Core</span><span class="tag">C#</span><span class="tag">SQL Server</span>
-          <span class="tag">REST APIs</span><span class="tag">Payments</span><span class="tag">Debugging</span>
+          <span class="tag">REST APIs</span><span class="tag">Payments</span>
         </div>
       </div>
     </div>
@@ -501,53 +587,56 @@
         <div class="kicker">Machine Learning · Time Series</div>
         <h3 class="card-t" style="font-size:30px;">Intelligent Retail Demand Forecasting System</h3>
         <p class="card-d">
-          A hybrid ARIMA and LSTM model that pairs classical statistical structure with a
-          neural network's handling of non-linear demand — improving prediction accuracy
-          by 18 percent over the baseline. Wrapped in a Flask dashboard surfacing sales
-          trends, top products, and inventory planning, then containerised with Docker and
-          deployed through a GitHub Actions pipeline.
+          A hybrid forecasting pipeline for 174 products across H&amp;M and two other retail
+          datasets (2015–2023). Seasonal ARIMA models trend and seasonality, a stacked LSTM
+          learns the residual patterns, and the two are combined through a weighted blend.
+          Validated on a temporal holdout — trained on 2015–2022, tested on 2023 — with
+          monthly forecasts generated through September 2028 and served in a Flask dashboard.
         </p>
         <div class="tags">
-          <span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">LSTM</span>
-          <span class="tag">TensorFlow</span><span class="tag">Flask</span>
-          <span class="tag">Docker</span><span class="tag">GitHub Actions</span>
+          <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">pmdarima</span>
+          <span class="tag">ARIMA</span><span class="tag">LSTM</span><span class="tag">Flask</span>
         </div>
         <a class="card-link" href="https://github.com/yaseensharaf/Intelligent-Retail-Demand-Forecasting-System" target="_blank" rel="noopener" style="display:inline-block;">View repository →</a>
       </div>
       <div class="feature-metric">
-        <div class="metric-n">+18%</div>
-        <div class="metric-l">Forecast accuracy<br>over baseline model</div>
+        <div class="metric-n">15.2%</div>
+        <div class="metric-l">Mean MAPE across 80 H&amp;M products<br>90% of products under 20% error</div>
       </div>
     </div>
 
     <div class="work-grid">
       <article class="card rv">
-        <div class="kicker">Full-Stack · Platform</div>
-        <h3 class="card-t">Uni Hub</h3>
+        <div class="kicker">Backend · Real-time</div>
+        <h3 class="card-t">Game Arena — Real-Time Multiplayer Server</h3>
         <p class="card-d">
-          A Django platform for student networking, communities, and events. Dockerised
-          architecture on a PostgreSQL backend with CI/CD integration, and REST endpoints
-          validated end-to-end in Postman.
+          A server-authoritative multiplayer game server in Go over WebSockets. Each match
+          runs in its own goroutine that solely owns game state — no locks — and the server
+          validates every move. Supports matchmaking, rematches, and reconnection within a
+          30-second grace period. Slow clients get bounded send queues, metrics are exposed
+          in Prometheus format, and the rules engine is verified against all 255,168 legal
+          games, tested under the race detector in CI.
         </p>
         <div class="tags">
-          <span class="tag">Django</span><span class="tag">PostgreSQL</span>
-          <span class="tag">Docker</span><span class="tag">REST</span>
+          <span class="tag">Go</span><span class="tag">WebSockets</span>
+          <span class="tag">Docker</span><span class="tag">GitHub Actions</span>
         </div>
-        <a class="card-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View repository →</a>
+        <a class="card-link" href="https://github.com/yaseensharaf/Real-Time-Multiplayer-Game-with-a-Go-Backend." target="_blank" rel="noopener">View repository →</a>
       </article>
 
       <article class="card rv">
-        <div class="kicker">Mobile · Android</div>
-        <h3 class="card-t">Daily Groceries</h3>
+        <div class="kicker">AI · Optimisation</div>
+        <h3 class="card-t">Travelling Salesman: ILS vs Genetic Algorithm</h3>
         <p class="card-d">
-          A native Android shopping app in Kotlin and Firebase with authentication,
-          real-time cart synchronisation, order management, and purchase history —
-          built on MVVM with ViewModel, LiveData, and RecyclerView.
+          Implemented and compared Iterated Local Search and a Genetic Algorithm across
+          100 controlled TSP experiments. On 50-city instances, ILS produced routes 2.5%
+          shorter on average and ran about 3.7× faster.
         </p>
         <div class="tags">
-          <span class="tag">Kotlin</span><span class="tag">Firebase</span><span class="tag">MVVM</span>
+          <span class="tag">Python</span><span class="tag">NumPy</span>
+          <span class="tag">Pandas</span><span class="tag">SciPy</span>
         </div>
-        <a class="card-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View repository →</a>
+        <a class="card-link" href="https://github.com/yaseensharaf/AI-for-Search-and-Optimisation" target="_blank" rel="noopener">View repository →</a>
       </article>
 
       <article class="card rv">
@@ -561,7 +650,7 @@
         <div class="tags">
           <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Dataviz</span>
         </div>
-        <a class="card-link" href="https://github.com/yaseensharaf" target="_blank" rel="noopener">View repository →</a>
+        <a class="card-link" href="https://github.com/yaseensharaf/ml-nutrition-referral-dashboard" target="_blank" rel="noopener">View repository →</a>
       </article>
     </div>
   </div>
@@ -574,33 +663,23 @@
     <div class="skills">
       <div class="rv">
         <div class="sk-h">Languages</div>
-        <div class="sk-list">
-          <span class="sk">Python</span><span class="sk">C#</span><span class="sk">JavaScript</span>
-          <span class="sk">SQL</span><span class="sk">Kotlin</span><span class="sk">Bash</span>
-          <span class="sk">HTML</span><span class="sk">CSS</span><span class="sk">Node.js</span>
-        </div>
+        <div class="sk-list"><span class="sk">Python</span><span class="sk">Go</span><span class="sk">C#</span><span class="sk">C/C++</span><span class="sk">JavaScript</span><span class="sk">TypeScript</span><span class="sk">SQL</span><span class="sk">Kotlin</span><span class="sk">HTML/CSS</span></div>
       </div>
       <div class="rv">
         <div class="sk-h">Frameworks</div>
-        <div class="sk-list">
-          <span class="sk">Django</span><span class="sk">Flask</span><span class="sk">ASP.NET Core</span>
-        </div>
+        <div class="sk-list"><span class="sk">Django</span><span class="sk">Flask</span><span class="sk">FastAPI</span><span class="sk">ASP.NET Core</span><span class="sk">React</span><span class="sk">Next.js</span></div>
       </div>
       <div class="rv">
         <div class="sk-h">Machine Learning &amp; Data</div>
-        <div class="sk-list">
-          <span class="sk">TensorFlow</span><span class="sk">Keras</span><span class="sk">Scikit-learn</span>
-          <span class="sk">Pandas</span><span class="sk">NumPy</span><span class="sk">Matplotlib</span>
-        </div>
+        <div class="sk-list"><span class="sk">TensorFlow</span><span class="sk">Keras</span><span class="sk">Scikit-learn</span><span class="sk">XGBoost</span><span class="sk">Pandas</span><span class="sk">NumPy</span><span class="sk">Matplotlib</span></div>
       </div>
       <div class="rv">
-        <div class="sk-h">Tools, Cloud &amp; Practice</div>
-        <div class="sk-list">
-          <span class="sk">Git</span><span class="sk">GitHub Actions</span><span class="sk">Docker</span>
-          <span class="sk">Kubernetes</span><span class="sk">Postman</span><span class="sk">AWS</span>
-          <span class="sk">GCP</span><span class="sk">PostgreSQL</span><span class="sk">Firebase</span>
-          <span class="sk">Linux</span><span class="sk">Agile / Scrum</span><span class="sk">TDD</span>
-        </div>
+        <div class="sk-h">Databases &amp; Tools</div>
+        <div class="sk-list"><span class="sk">PostgreSQL</span><span class="sk">MySQL</span><span class="sk">Redis</span><span class="sk">Firebase</span><span class="sk">Docker</span><span class="sk">Git</span><span class="sk">GitHub Actions</span><span class="sk">Postman</span><span class="sk">Linux</span></div>
+      </div>
+      <div class="rv">
+        <div class="sk-h">Cloud &amp; Practice</div>
+        <div class="sk-list"><span class="sk">AWS</span><span class="sk">GCP</span><span class="sk">REST APIs</span><span class="sk">CI/CD</span><span class="sk">Agile</span><span class="sk">Scrum</span></div>
       </div>
     </div>
   </div>
@@ -626,10 +705,10 @@
       <div class="rv">
         <div class="sub-h">Certifications</div>
         <div class="sheet">
+          <div class="cert"><span class="cert-n">CCNA</span><span class="cert-o">Cisco · North Lake College · 2026</span></div>
           <div class="cert"><span class="cert-n">Ethical Hacker</span><span class="cert-o">Cisco · 2025</span></div>
           <div class="cert"><span class="cert-n">Introduction to Cybersecurity</span><span class="cert-o">Cisco · 2025</span></div>
           <div class="cert"><span class="cert-n">NLP with Classification &amp; Vector Spaces</span><span class="cert-o">DeepLearning.AI · 2025</span></div>
-          <div class="cert"><span class="cert-n">CCNA</span><span class="cert-o">Cisco · In progress</span></div>
         </div>
       </div>
     </div>
@@ -641,7 +720,7 @@
   <div class="wrap">
     <h2>Let's build something<br>worth <span class="it">shipping</span>.</h2>
     <p>
-      Open to backend, full-stack, and machine learning engineering roles.
+      Open to full-time backend, full-stack, and machine learning engineering roles.
       Based in Irving, Texas — authorized to work in the U.S. without sponsorship.
     </p>
     <div class="contact-links">
@@ -661,6 +740,17 @@
   const onScroll = () => nav.classList.toggle('stuck', window.scrollY > 60);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive:true });
+
+  // mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.textContent = open ? 'Close' : 'Menu';
+  });
+  document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); menuBtn.textContent = 'Menu';
+  }));
 
   // reveal
   const io = new IntersectionObserver((es) => {
